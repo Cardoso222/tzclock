@@ -7,7 +7,8 @@ import SwiftUI
 struct TopBarApp: App {
     @StateObject private var appState = AppState();
     var body: some Scene {
-        MenuBarExtra("🌎 " + appState.prefix + " " + appState.currentDateTime) {
+        let prefix = appState.showGlobe ? "🌎 " : " ";
+        MenuBarExtra(prefix + appState.prefix + " " + appState.currentDateTime) {
             SetupView().environmentObject(appState)
         }.menuBarExtraStyle(WindowMenuBarExtraStyle())
     }
@@ -18,7 +19,8 @@ class AppState: ObservableObject {
     init() {
         self.prefix = UserDefaults.standard.string(forKey: "LastUserInput") ?? "<clock name>"
         self.selectedTimeZone = UserDefaults.standard.string(forKey: "LastSelectedTimeZone") ?? "America/Detroit"
-        
+        self.showGlobe = true
+
         updateCurrentDateTime()
         startTimer()
     }
@@ -28,6 +30,7 @@ class AppState: ObservableObject {
     @Published var prefix: String;
     @Published var selectedTimeZone: String;
     @Published var currentDateTime: String = ""
+    @Published var showGlobe: Bool;
 
     func updateCurrentDateTime() {
         let formatter = DateFormatter()

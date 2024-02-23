@@ -7,9 +7,10 @@
 import SwiftUI
 
 struct SetupView: View {
-    @State private var timeZone = "Brasília (GMT-2)"
-    @State public var selectedOption: String = "America/Detroit";
+    @State private var timeZone = "Brasília (GMT-3)"
+    @State public var selectedOption: String = "America/Detroit"
     @State private var isPickerVisible: Bool = false
+
 
     @State public var userInput: String = ""
     @EnvironmentObject var appState: AppState
@@ -42,6 +43,19 @@ struct SetupView: View {
                 .padding(5)
                 .listRowSeparator(.hidden)
                 
+                HStack {
+                    Text("Show Emoji")
+                        .font(.headline)
+                        .listRowSeparator(.hidden)
+                        .frame(width: 175, alignment: .leading)
+                    Toggle(
+                            "",
+                            systemImage: "",
+                            isOn: $appState.showGlobe
+                    ).frame(width: 175, alignment: .center)
+                }
+                .padding(5)
+                .listRowSeparator(.hidden)
                 
                 HStack {
                     Text("Clock Name")
