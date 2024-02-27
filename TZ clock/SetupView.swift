@@ -44,20 +44,6 @@ struct SetupView: View {
                 .listRowSeparator(.hidden)
                 
                 HStack {
-                    Text("Show Emoji")
-                        .font(.headline)
-                        .listRowSeparator(.hidden)
-                        .frame(width: 175, alignment: .leading)
-                    Toggle(
-                            "",
-                            systemImage: "",
-                            isOn: $appState.showGlobe
-                    ).frame(width: 175, alignment: .center)
-                }
-                .padding(5)
-                .listRowSeparator(.hidden)
-                
-                HStack {
                     Text("Clock Name")
                         .font(.headline)
                         .listRowSeparator(.hidden)
@@ -81,6 +67,22 @@ struct SetupView: View {
                 .padding(5)
                 .listRowSeparator(.hidden)
                 
+                HStack {
+                    Text("Show Emoji")
+                        .font(.headline)
+                        .listRowSeparator(.hidden)
+                        .frame(width: 165, alignment: .leading)
+                    Toggle(
+                            "",
+                            systemImage: "",
+                            isOn: $appState.showGlobe
+                    )
+                    .toggleStyle(SwitchToggleStyle(tint: .blue))
+                    .frame(width: 70, alignment: .center)
+                }
+                .padding(5)
+                .listRowSeparator(.hidden)
+
                 Divider()
                 Text("Quit")
                     .font(.headline)
